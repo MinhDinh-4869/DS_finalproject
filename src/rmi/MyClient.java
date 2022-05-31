@@ -1,12 +1,16 @@
 package rmi;
 
 import java.rmi.Naming;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 public class MyClient {
     public static void main(String args[]){
         try{
-            Calculator3 stub=(Calculator3) Naming.lookup("rmi://localhost:3063/MyServer");
-            System.out.println("The final velocity: " + stub.calculateV(30, 45, 1));
+            Registry reg = LocateRegistry.getRegistry("192.168.1.17", 8080);
+            Calculator1 stub=(Calculator1) reg.lookup("Server1");
+            //Calculator1 stub=(Calculator1) Naming.lookup("rmi://192.168.1.17/Server1");
+            System.out.println("The final velocity: " + stub.calculateVx(13, 12));
         }catch(Exception e){
             e.printStackTrace();
         }

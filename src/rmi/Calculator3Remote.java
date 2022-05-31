@@ -7,8 +7,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class Calculator3Remote extends UnicastRemoteObject implements Calculator3 {
     double result1 = 0;
     double result2 = 0;
-    boolean isdone1 = false;
-    boolean isdone2 = false;
+
     public Calculator3Remote() throws RemoteException
     {
         super();
@@ -48,7 +47,7 @@ public class Calculator3Remote extends UnicastRemoteObject implements Calculator
         {
             System.out.println("vx is running");
             try {
-                Calculator1 stub=(Calculator1) Naming.lookup("rmi://localhost:3060/Server1");
+                Calculator1 stub=(Calculator1) Naming.lookup("rmi://192.168.1.24/Server1");
                 result1 = stub.calculateVx(v0, A);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -70,7 +69,7 @@ public class Calculator3Remote extends UnicastRemoteObject implements Calculator
         {
             System.out.println("vy is running");
             try {
-                Calculator2 stub=(Calculator2) Naming.lookup("rmi://localhost:3061/Server2");
+                Calculator2 stub=(Calculator2) Naming.lookup("rmi://192.168.1.24/Server2");
                 result2 = stub.calculateVy(v0, A, T);
             } catch (Exception e) {
                 e.printStackTrace();
